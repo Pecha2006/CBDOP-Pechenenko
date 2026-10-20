@@ -1,0 +1,49 @@
+
+<div class="calculator">
+  <h1>Калькулятор прямокутного трикутника</h1>
+
+  <p class="description">
+    Практична робота №3
+  </p>
+
+  <p>Введіть довжини двох катетів:</p>
+
+  <div class="input-group">
+    <label for="a">Катет a:</label>
+    <input
+      id="a"
+      type="number"
+      [(ngModel)]="a"
+      placeholder="Введіть катет a"
+      min="0.01"
+      step="any"
+    />
+  </div>
+
+  <div class="input-group">
+    <label for="b">Катет b:</label>
+    <input
+      id="b"
+      type="number"
+      [(ngModel)]="b"
+      placeholder="Введіть катет b"
+      min="0.01"
+      step="any"
+    />
+  </div>
+
+  <button (click)="calculate()">Обчислити</button>
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  @if (hypotenuse !== null && area !== null) {
+    <div class="result">
+      <h2>Результати обчислення:</h2>
+
+      <p>Гіпотенуза: <strong>{{ hypotenuse.toFixed(2) }}</strong></p>
+      <p>Площа: <strong>{{ area.toFixed(2) }}</strong></p>
+    </div>
+  }
+</div>
