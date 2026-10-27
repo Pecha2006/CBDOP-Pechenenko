@@ -1,0 +1,12 @@
+
+<div class="result-card">
+  <h2>Результат сортування</h2>
+
+  @if (sortedText) {
+    <p class="result-text">{{ sortedText }}</p>
+  } @else {
+    <p class="empty-text">
+      Введіть текст у поле вище, щоб побачити результат.
+    </p>
+  }
+</div>

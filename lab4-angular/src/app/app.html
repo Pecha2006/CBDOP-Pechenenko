@@ -1,0 +1,21 @@
+
+<div class="container">
+  <h1>Сортування слів у тексті</h1>
+
+  <p class="subtitle">
+    Варіант 9
+  </p>
+
+  <div class="input-group">
+    <label for="textInput">Введіть текст:</label>
+
+    <textarea
+      id="textInput"
+      [(ngModel)]="text"
+      placeholder="Наприклад: яблуко груша банан"
+      rows="4">
+    </textarea>
+  </div>
+
+  <app-text-sorter [text]="text"></app-text-sorter>
+</div>

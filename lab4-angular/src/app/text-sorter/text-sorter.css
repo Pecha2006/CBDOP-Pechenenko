@@ -1,0 +1,26 @@
+
+.result-card {
+  margin-top: 25px;
+  padding: 24px;
+  background-color: #f0f7ff;
+  border: 1px solid #c8ddf5;
+  border-radius: 12px;
+  text-align: center;
+}
+
+h2 {
+  color: #2459a6;
+  margin-bottom: 15px;
+}
+
+.result-text {
+  color: #176b40;
+  font-size: 20px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.empty-text {
+  color: #777;
+  font-size: 15px;
+}
