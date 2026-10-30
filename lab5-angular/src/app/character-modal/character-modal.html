@@ -1,0 +1,54 @@
+
+@if (character) {
+  <div class="modal-overlay">
+    <div class="modal-content">
+
+      <button class="close-button" (click)="closeModal()">
+        ×
+      </button>
+
+      <h2>Інформація про персонажа</h2>
+
+      <img
+        class="character-image"
+        [src]="character.image"
+        [alt]="character.name"
+      >
+
+      <h3>{{ character.name }}</h3>
+
+      <div class="character-info">
+        <p><strong>ID:</strong> {{ character.id }}</p>
+        <p><strong>Статус:</strong> {{ character.status }}</p>
+        <p><strong>Вид / раса:</strong> {{ character.species }}</p>
+        <p><strong>Тип:</strong> {{ character.type || 'Не вказано' }}</p>
+        <p><strong>Стать:</strong> {{ character.gender }}</p>
+
+        <p>
+          <strong>Походження:</strong>
+          {{ character.origin.name }}
+        </p>
+
+        <p>
+          <strong>Місцезнаходження:</strong>
+          {{ character.location.name }}
+        </p>
+
+        <p>
+          <strong>Кількість епізодів:</strong>
+          {{ character.episode.length }}
+        </p>
+
+        <p>
+          <strong>Дата створення запису:</strong>
+          {{ character.created.slice(0, 10) }}
+        </p>
+      </div>
+
+      <button class="close-modal-button" (click)="closeModal()">
+        Закрити
+      </button>
+
+    </div>
+  </div>
+}

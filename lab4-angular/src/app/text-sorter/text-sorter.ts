@@ -11,8 +11,22 @@ export class TextSorter {
 
   @Input() text: string = '';
 
-  get sortedText(): string {
+  get errorMessage(): string {
     if (this.text.trim() === '') {
+      return '';
+    }
+
+    const validText = /^[А-Яа-яІіЇїЄєҐґ\s]+$/u;
+
+    if (!validText.test(this.text)) {
+      return 'Помилка! Введіть українські слова!';
+    }
+
+    return '';
+  }
+
+  get sortedText(): string {
+    if (this.text.trim() === '' || this.errorMessage !== '') {
       return '';
     }
 

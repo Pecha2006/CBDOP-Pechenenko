@@ -13,14 +13,13 @@ const rl = createInterface({
 });
 
 // Запуск практичної №3
-
 function runLab3(): void {
     const angularDirectory = resolve(__dirname, "..", "lab3-angular");
 
     const command = `
         Start-Process -FilePath 'cmd.exe'
         -WorkingDirectory '${angularDirectory.replace(/'/g, "''")}'
-        -ArgumentList '/k', 'npx.cmd ng serve --open'
+        -ArgumentList '/k', 'npx.cmd ng serve --open --port 4200'
     `.replace(/\r?\n/g, " ");
 
     try {
@@ -37,7 +36,6 @@ function runLab3(): void {
 }
 
 // Запуск практичної №4
-
 function runLab4(): void {
     const angularDirectory = resolve(__dirname, "..", "lab4-angular");
 
@@ -60,6 +58,30 @@ function runLab4(): void {
     }
 }
 
+// Запуск практичної №5
+function runLab5(): void {
+    const angularDirectory = resolve(__dirname, "..", "lab5-angular");
+
+    const command = `
+        Start-Process -FilePath 'cmd.exe'
+        -WorkingDirectory '${angularDirectory.replace(/'/g, "''")}'
+        -ArgumentList '/k', 'npx.cmd ng serve --open --port 4202'
+    `.replace(/\r?\n/g, " ");
+
+    try {
+        execFileSync(
+            "powershell.exe",
+            ["-NoProfile", "-Command", command],
+            { stdio: "inherit" }
+        );
+
+        console.log("Команду запуску Angular виконано.");
+    } catch (error) {
+        console.error("Помилка запуску Angular:", error);
+    }
+}
+
+// Головне меню
 async function main(): Promise<void> {
     try {
         while (true) {
@@ -70,6 +92,7 @@ async function main(): Promise<void> {
             console.log("2 — Практична робота №2");
             console.log("3 — Практична робота №3 (Angular)");
             console.log("4 — Практична робота №4 (Angular)");
+            console.log("5 — Практична робота №5 (Angular)");
             console.log("0 — Вихід");
             console.log("=================================");
 
@@ -99,12 +122,18 @@ async function main(): Promise<void> {
                     runLab4();
                     break;
 
+                case "5":
+                    console.log("\n=== ПРАКТИЧНА РОБОТА №5 ===\n");
+                    console.log("Запуск Angular у новому вікні CMD...");
+                    runLab5();
+                    break;
+
                 case "0":
                     console.log("Завершення програми.");
                     return;
 
                 default:
-                    console.log("Невірний вибір! Введіть 0, 1, 2, 3 або 4.");
+                    console.log("Невірний вибір! Введіть число від 0 до 5.");
             }
         }
     } finally {

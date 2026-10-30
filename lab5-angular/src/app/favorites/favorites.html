@@ -1,0 +1,39 @@
+
+<div class="favorites-container">
+
+  <h2>⭐ Вибрані персонажі ({{ characters.length }})</h2>
+
+  @if (characters.length === 0) {
+    <p class="empty-message">
+      Ви ще не додали жодного персонажа до вибраного.
+    </p>
+  } @else {
+
+    <div class="favorites-list">
+      @for (character of characters; track character.id) {
+
+        <div class="favorite-card">
+          <img
+            [src]="character.image"
+            [alt]="character.name"
+          >
+
+          <div class="favorite-info">
+            <h3>{{ character.name }}</h3>
+            <p>Вид: {{ character.species }}</p>
+            <p>Статус: {{ character.status }}</p>
+          </div>
+
+          <button
+            class="remove-button"
+            (click)="removeCharacter(character.id)">
+            Видалити
+          </button>
+        </div>
+
+      }
+    </div>
+
+  }
+
+</div>
