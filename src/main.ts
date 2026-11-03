@@ -81,6 +81,29 @@ function runLab5(): void {
     }
 }
 
+// Запуск практичної №6
+function runLab6(): void {
+    const angularDirectory = resolve(__dirname, "..", "lab6-angular");
+
+    const command = `
+        Start-Process -FilePath 'cmd.exe'
+        -WorkingDirectory '${angularDirectory.replace(/'/g, "''")}'
+        -ArgumentList '/k', 'npx.cmd ng serve --open --port 4203'
+    `.replace(/\r?\n/g, " ");
+
+    try {
+        execFileSync(
+            "powershell.exe",
+            ["-NoProfile", "-Command", command],
+            { stdio: "inherit" }
+        );
+
+        console.log("Команду запуску Angular виконано.");
+    } catch (error) {
+        console.error("Помилка запуску Angular:", error);
+    }
+}
+
 // Головне меню
 async function main(): Promise<void> {
     try {
@@ -93,6 +116,7 @@ async function main(): Promise<void> {
             console.log("3 — Практична робота №3 (Angular)");
             console.log("4 — Практична робота №4 (Angular)");
             console.log("5 — Практична робота №5 (Angular)");
+            console.log("6 — Практична робота №6 (Angular + Ionic Storage)");
             console.log("0 — Вихід");
             console.log("=================================");
 
@@ -128,12 +152,18 @@ async function main(): Promise<void> {
                     runLab5();
                     break;
 
+                case "6":
+                    console.log("\n=== ПРАКТИЧНА РОБОТА №6 ===\n");
+                    console.log("Запуск Angular у новому вікні CMD...");
+                    runLab6();
+                    break;
+
                 case "0":
                     console.log("Завершення програми.");
                     return;
 
                 default:
-                    console.log("Невірний вибір! Введіть число від 0 до 5.");
+                    console.log("Невірний вибір! Введіть число від 0 до 6.");
             }
         }
     } finally {
