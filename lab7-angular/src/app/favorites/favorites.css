@@ -1,0 +1,71 @@
+
+.favorites-container {
+  margin-top: 35px;
+  padding: 25px;
+  background-color: #f0f7ff;
+  border: 1px solid #c8ddf5;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  color: #2459a6;
+  margin-bottom: 20px;
+}
+
+.empty-message {
+  color: #777;
+  text-align: center;
+  font-size: 15px;
+}
+
+.favorites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.favorite-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.favorite-card img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.favorite-info {
+  flex: 1;
+}
+
+.favorite-info h3 {
+  margin: 0 0 8px;
+  color: #2459a6;
+}
+
+.favorite-info p {
+  margin: 4px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.remove-button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #a92020;
+}
