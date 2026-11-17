@@ -160,6 +160,39 @@ async function runLab7(): Promise<void> {
     }
 }
 
+// Запуск практичної №8 (дизайн-патерни)
+async function runLab8(): Promise<void> {
+    console.log("1 — Запустити застосунок (ng serve)");
+    console.log("2 — Запустити тести (Karma + Jasmine у браузері)");
+    console.log("3 — Запустити тести з покриттям коду (coverage)");
+    console.log("0 — Назад");
+
+    const choice: string = (await rl.question("Введіть номер: ")).trim();
+
+    switch (choice) {
+        case "1":
+            console.log("Запуск Angular у новому вікні CMD...");
+            runInNewWindow("lab8-angular", "npx.cmd ng serve --open --port 4205");
+            break;
+
+        case "2":
+            console.log("Запуск тестів у новому вікні CMD...");
+            runInNewWindow("lab8-angular", "npx.cmd ng test");
+            break;
+
+        case "3":
+            console.log("Запуск тестів з покриттям у новому вікні CMD...");
+            runInNewWindow("lab8-angular", "npx.cmd ng test --code-coverage --watch=false");
+            break;
+
+        case "0":
+            break;
+
+        default:
+            console.log("Невірний вибір!");
+    }
+}
+
 // Головне меню
 async function main(): Promise<void> {
     try {
@@ -174,6 +207,7 @@ async function main(): Promise<void> {
             console.log("5 — Практична робота №5 (Angular)");
             console.log("6 — Практична робота №6 (Angular + Ionic Storage)");
             console.log("7 — Практична робота №7 (Тестування Angular)");
+            console.log("8 — Практична робота №8 (Дизайн-патерни)");
             console.log("0 — Вихід");
             console.log("=================================");
 
@@ -220,12 +254,17 @@ async function main(): Promise<void> {
                     await runLab7();
                     break;
 
+                case "8":
+                    console.log("\n=== ПРАКТИЧНА РОБОТА №8 ===\n");
+                    await runLab8();
+                    break;
+
                 case "0":
                     console.log("Завершення програми.");
                     return;
 
                 default:
-                    console.log("Невірний вибір! Введіть число від 0 до 7.");
+                    console.log("Невірний вибір! Введіть число від 0 до 8.");
             }
         }
     } finally {
