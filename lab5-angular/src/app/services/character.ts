@@ -38,7 +38,7 @@ export interface CharacterResponse {
 })
 export class CharacterService {
 
-  private apiUrl = 'https://rickandmortyapi.com/api/character';
+  private apiUrl = 'https://rickdmortyapi.com/api/character';
 
   async getCharacters(page: number = 1): Promise<CharacterResponse> {
     const response = await axios.get<CharacterResponse>(

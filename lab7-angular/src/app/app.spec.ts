@@ -3,6 +3,7 @@ import { App } from './app';
 import { CharacterService } from './services/character';
 import { FavoritesStorageService } from './services/favorites-storage';
 import { MOCK_CHARACTERS, MOCK_RESPONSE } from './testing/mock-data';
+import Chart from 'chart.js/auto';
 
 /**
  * Тести головного компонента App.
@@ -16,6 +17,10 @@ describe('App', () => {
   let storageServiceMock: jasmine.SpyObj<FavoritesStorageService>;
 
   beforeEach(async () => {
+    // Вимикаємо анімацію діаграми: інакше тести чекають кінця анімації,
+    // а у фоновому вікні Chrome вона може не завершитись ніколи
+    Chart.defaults.animation = false;
+
     characterServiceMock = jasmine.createSpyObj('CharacterService', ['getCharacters']);
     storageServiceMock = jasmine.createSpyObj('FavoritesStorageService', [
       'getFavorites',
@@ -95,7 +100,7 @@ describe('App', () => {
 
     await initComponent();
 
-    expect(component.error).toBe('Не вдалося завантажити персонажів.');
+    expect(component.error).toBe('Не вдалося завантажити персонажів, перевірте API');
     const errorEl: HTMLElement = fixture.nativeElement.querySelector('.error');
     expect(errorEl.textContent).toContain('Не вдалося');
   });
@@ -176,9 +181,11 @@ describe('App', () => {
   it('клік на зірочку не повинен відкривати модальне вікно', async () => {
     await initComponent();
 
+    const toggleSpy = spyOn(component, 'toggleFavorite').and.callThrough();
     const starButton: HTMLButtonElement = fixture.nativeElement.querySelector('.favorite-button');
+
     starButton.click();
-    await fixture.whenStable();
+    await toggleSpy.calls.mostRecent().returnValue; // чекаємо завершення збереження
     fixture.detectChanges();
 
     expect(component.selectedCharacter).toBeNull();

@@ -36,7 +36,7 @@ export class App implements OnInit {
       this.characters = response.results;
     } catch (error) {
       console.error('Помилка API:', error);
-      this.error = 'Не вдалося завантажити персонажів.';
+      this.error = 'Не вдалося завантажити персонажів, перевірте API';
     } finally {
       this.loading = false;
     }
